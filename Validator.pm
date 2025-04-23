@@ -86,7 +86,7 @@ sub _list_plugins {
 	my @plugins = MARC::Validator::plugins;
 
 	print "List of plugins:\n";
-	print map { '- '.$_ } join "\n", @plugins;
+	print map { '- '.$_ } join "\n- ", @plugins;
 	print "\n";
 
 	return 0;

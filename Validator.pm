@@ -107,7 +107,7 @@ sub _process_validation {
 				$marc_file->next;
 			};
 			if ($EVAL_ERROR) {
-				print STDERR "Cannot process '$num' record. ".
+				print STDERR "Cannot process file '$marc_xml_file', record '$num'.".
 					(
 						defined $previous_record
 						? "Previous record is ".encode_utf8($previous_record->title)."\n"

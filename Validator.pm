@@ -139,7 +139,7 @@ sub _process_validation {
 	if ($self->{'_opts'}->{'p'}) {
 		$j = $j->pretty;
 	}
-	my $json = $j->encode($output_struct_hr);
+	my $json = $j->canonical(1)->encode($output_struct_hr);
 
 	# Save to file.
 	barf('output.json', $json);

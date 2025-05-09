@@ -20,6 +20,8 @@ META.yml
 README
 t/App-MARC-Validator/01-use.t
 t/App-MARC-Validator/02-version.t
+t/App-MARC-Validator/03-new.t
+t/App-MARC-Validator/04-run.t
 Validator.pm
 xt/App-MARC-Validator/01-pod_coverage.t
 xt/App-MARC-Validator/02-pod.t

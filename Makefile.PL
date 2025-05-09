@@ -30,8 +30,13 @@ requires 'Unicode::UTF8' => 0;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/App-MARC-Validator/issues',
 resources 'homepage' => 'https://github.com/michal-josef-spacek/App-MARC-Validator';
 resources 'repository' => 'git://github.com/michal-josef-spacek/App-MARC-Validator';
+test_requires 'English' => 0;
+test_requires 'File::Object' => 0;
+test_requires 'File::Spec::Functions' => 0;
 test_requires 'Test::More' => 0;
 test_requires 'Test::NoWarnings' => 0;
+test_requires 'Test::Output' => 0;
+test_requires 'Test::Warn' => 0.31;
 tests_recursive;
 version '0.01';
 

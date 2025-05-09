@@ -167,7 +167,7 @@ sub _postprocess_plugins {
 sub _usage {
 	my $self = shift;
 
-	print STDERR "Usage: $0 [-d] [-h] [-l] [-o output_file] [-p] [--version] marc_xml_file\n";
+	print STDERR "Usage: $0 [-d] [-h] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file..\n";
 	print STDERR "\t-d\t\tDebug mode.\n";
 	print STDERR "\t-h\t\tPrint help.\n";
 	print STDERR "\t-l\t\tList of plugins.\n";
@@ -175,7 +175,7 @@ sub _usage {
 	print STDERR "\t-p\t\tPretty print JSON output.\n";
 	print STDERR "\t-v\t\tVerbose mode.\n";
 	print STDERR "\t--version\tPrint version.\n";
-	print STDERR "\tmarc_xml_file\tMARC XML file.\n";
+	print STDERR "\tmarc_xml_file..\tMARC XML file(s).\n";
 
 	return;
 }

@@ -2,7 +2,7 @@ NAME
     marc-validator - Tool to validate records in MARC file.
 
 SYNOPSIS
-     marc-validator [-d] [-h] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file
+     marc-validator [-d] [-h] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file..
 
 DESCRIPTION
     Tool to validate dataset from MARC record collections.
@@ -40,9 +40,9 @@ ARGUMENTS
 
             Print version of script.
 
-    *       "marc_xml_file"
+    *       "marc_xml_file.."
 
-            MARC XML file name.
+            MARC XML file name(s).
 
 EXAMPLE
      marc-validator __MARC.xml__

@@ -28,7 +28,7 @@ marc-validator - Tool to validate records in MARC file.
 
 =head1 SYNOPSIS
 
- marc-validator [-d] [-h] [-l] [-p] [-v] [--version] marc_xml_file
+ marc-validator [-d] [-h] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file
 
 =head1 DESCRIPTION
 
@@ -51,6 +51,12 @@ Print help.
 =item * C<-l>
 
 Print list of plugins.
+
+=item * C<-o output_file>
+
+Output file to save result.
+
+Default value is undef.
 
 =item * C<-p>
 

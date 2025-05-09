@@ -37,10 +37,11 @@ sub run {
 		'd' => 0,
 		'h' => 0,
 		'l' => 0,
+		'o' => undef,
 		'p' => 0,
 		'v' => 0,
 	};
-	if (! getopts('dhlpv', $self->{'_opts'})
+	if (! getopts('dhlo:pv', $self->{'_opts'})
 		|| $self->{'_opts'}->{'h'}) {
 
 		$self->_usage;
@@ -142,7 +143,13 @@ sub _process_validation {
 	my $json = $j->canonical(1)->encode($output_struct_hr);
 
 	# Save to file.
-	barf('output.json', $json);
+	if (defined $self->{'_opts'}->{'o'}) {
+		barf($self->{'_opts'}->{'o'}, encode_utf8($json));
+
+	# Print to STDOUT.
+	} else {
+		print encode_utf8($json);
+	}
 
 	return 0;
 }
@@ -160,10 +167,11 @@ sub _postprocess_plugins {
 sub _usage {
 	my $self = shift;
 
-	print STDERR "Usage: $0 [-d] [-h] [-l] [-p] [--version] marc_xml_file\n";
+	print STDERR "Usage: $0 [-d] [-h] [-l] [-o output_file] [-p] [--version] marc_xml_file\n";
 	print STDERR "\t-d\t\tDebug mode.\n";
 	print STDERR "\t-h\t\tPrint help.\n";
 	print STDERR "\t-l\t\tList of plugins.\n";
+	print STDERR "\t-o output_file\tOutput file (default is STDOUT).\n";
 	print STDERR "\t-p\t\tPretty print JSON output.\n";
 	print STDERR "\t-v\t\tVerbose mode.\n";
 	print STDERR "\t--version\tPrint version.\n";

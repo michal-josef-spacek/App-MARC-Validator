@@ -80,6 +80,16 @@ MARC XML file name(s).
 
  marc-validator __MARC.xml__
 
+=head1 SEE ALSO
+
+=over
+
+=item L<marc-validator-report>
+
+Tool to process MARC validation report.
+
+=back
+
 =head1 REPOSITORY
 
 L<https://github.com/michal-josef-spacek/App-MARC-Validator>

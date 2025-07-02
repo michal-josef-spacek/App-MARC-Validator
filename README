@@ -47,6 +47,10 @@ ARGUMENTS
 EXAMPLE
      marc-validator __MARC.xml__
 
+SEE ALSO
+    marc-validator-report
+        Tool to process MARC validation report.
+
 REPOSITORY
     <https://github.com/michal-josef-spacek/App-MARC-Validator>
 

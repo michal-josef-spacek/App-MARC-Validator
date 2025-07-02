@@ -5,16 +5,30 @@ use App::MARC::Validator;
 use English;
 use File::Object;
 use File::Spec::Functions qw(abs2rel);
-use Test::More 'tests' => 5;
+use Test::More 'tests' => 6;
 use Test::NoWarnings;
 use Test::Output;
 use Test::Warn 0.31;
 
 # Test.
 @ARGV = (
+	'-l',
+);
+my $right_ret = "List of plugins:\n- MARC::Validator";
+stdout_like(
+	sub {
+		App::MARC::Validator->new->run;
+		return;
+	},
+	qr{^$right_ret},
+	'List plugins (-l).',
+);
+
+# Test.
+@ARGV = (
 	'-h',
 );
-my $right_ret = help();
+$right_ret = help();
 stderr_is(
 	sub {
 		App::MARC::Validator->new->run;

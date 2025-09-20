@@ -97,7 +97,6 @@ sub _process_validation {
 	my $self = shift;
 
 	$self->_init_plugins;
-	my $ret_hr = {};
 	foreach my $marc_xml_file (@{$self->{'_marc_xml_files'}}) {
 		my $marc_file = MARC::File::XML->in($marc_xml_file);
 		my $num = 0;

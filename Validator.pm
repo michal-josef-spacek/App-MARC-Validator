@@ -99,6 +99,11 @@ sub _process_validation {
 	$self->_init_plugins;
 	foreach my $marc_xml_file (@{$self->{'_marc_xml_files'}}) {
 		my $marc_file = MARC::File::XML->in($marc_xml_file);
+		if (! defined $marc_file) {
+			print STDERR "Cannot open MARC file '$marc_xml_file'.\n";
+			print STDERR "Error: $MARC::File::XML::ERROR\n";
+			return 1;
+		}
 		my $num = 0;
 		my $previous_record;
 		while (1) {

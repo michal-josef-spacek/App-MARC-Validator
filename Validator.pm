@@ -8,8 +8,8 @@ use Cpanel::JSON::XS;
 use English;
 use Getopt::Std;
 use IO::Barf qw(barf);
-use MARC::Validator;
 use MARC::File::XML (BinaryEncoding => 'utf8', RecordFormat => 'MARC21');
+use MARC::Validator 0.06;
 use Unicode::UTF8 qw(encode_utf8);
 
 our $VERSION = 0.04;
@@ -36,12 +36,13 @@ sub run {
 	$self->{'_opts'} = {
 		'd' => 0,
 		'h' => 0,
+		'i' => '001',
 		'l' => 0,
 		'o' => undef,
 		'p' => 0,
 		'v' => 0,
 	};
-	if (! getopts('dhlo:pv', $self->{'_opts'})
+	if (! getopts('dhi:lo:pv', $self->{'_opts'})
 		|| $self->{'_opts'}->{'h'}) {
 
 		$self->_usage;
@@ -72,6 +73,7 @@ sub _init_plugins {
 	foreach my $plugin (MARC::Validator::plugins) {
 		my $plugin_obj = $plugin->new(
 			'debug' => $self->{'_opts'}->{'d'},
+			'error_id_def' => $self->{'_opts'}->{'i'},
 			'verbose' => $self->{'_opts'}->{'v'},
 		);
 		$plugin_obj->init;
@@ -171,9 +173,10 @@ sub _postprocess_plugins {
 sub _usage {
 	my $self = shift;
 
-	print STDERR "Usage: $0 [-d] [-h] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file..\n";
+	print STDERR "Usage: $0 [-d] [-h] [-i id] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file..\n";
 	print STDERR "\t-d\t\tDebug mode.\n";
 	print STDERR "\t-h\t\tPrint help.\n";
+	print STDERR "\t-i id\t\tRecord identifier (default value is 001).\n";
 	print STDERR "\t-l\t\tList of plugins.\n";
 	print STDERR "\t-o output_file\tOutput file (default is STDOUT).\n";
 	print STDERR "\t-p\t\tPretty print JSON output.\n";

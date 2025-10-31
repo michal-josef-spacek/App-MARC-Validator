@@ -12,7 +12,7 @@ use MARC::File::XML (BinaryEncoding => 'utf8', RecordFormat => 'MARC21');
 use MARC::Validator 0.06;
 use Unicode::UTF8 qw(encode_utf8);
 
-our $VERSION = 0.04;
+our $VERSION = 0.05;
 
 # Constructor.
 sub new {

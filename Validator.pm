@@ -10,6 +10,7 @@ use Getopt::Std;
 use IO::Barf qw(barf);
 use MARC::File::XML (BinaryEncoding => 'utf8', RecordFormat => 'MARC21');
 use MARC::Validator 0.06;
+use MARC::Validator::Filter;
 use Unicode::UTF8 qw(encode_utf8);
 
 our $VERSION = 0.05;
@@ -35,6 +36,7 @@ sub run {
 	# Process arguments.
 	$self->{'_opts'} = {
 		'd' => 0,
+		'f' => 0,
 		'h' => 0,
 		'i' => '001',
 		'l' => 0,
@@ -42,13 +44,15 @@ sub run {
 		'p' => 0,
 		'v' => 0,
 	};
-	if (! getopts('dhi:lo:pv', $self->{'_opts'})
+	if (! getopts('dfhi:lo:pv', $self->{'_opts'})
 		|| $self->{'_opts'}->{'h'}) {
 
 		$self->_usage;
 		return 1;
 	}
-	if (! $self->{'_opts'}->{'l'}) {
+	if (! $self->{'_opts'}->{'f'}
+		&& ! $self->{'_opts'}->{'l'}) {
+
 		if (@ARGV < 1) {
 			$self->_usage;
 			return 1;
@@ -59,11 +63,25 @@ sub run {
 	my $exit_code;
 	if ($self->{'_opts'}->{'l'}) {
 		$exit_code = $self->_list_plugins;
+	} elsif ($self->{'_opts'}->{'f'}) {
+		$exit_code = $self->_list_filter_plugins;
 	} else {
 		$exit_code = $self->_process_validation;
 	}
 
 	return $exit_code;
+}
+
+sub _list_filter_plugins {
+	my $self = shift;
+
+	my @plugins = MARC::Validator::Filter::plugins;
+
+	print "List of filter plugins:\n";
+	print map { '- '.$_ } join "\n- ", @plugins;
+	print "\n";
+
+	return 0;
 }
 
 sub _init_plugins {
@@ -173,8 +191,9 @@ sub _postprocess_plugins {
 sub _usage {
 	my $self = shift;
 
-	print STDERR "Usage: $0 [-d] [-h] [-i id] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file..\n";
+	print STDERR "Usage: $0 [-d] [-f] [-h] [-i id] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file..\n";
 	print STDERR "\t-d\t\tDebug mode.\n";
+	print STDERR "\t-f\t\tList of filter plugins.\n";
 	print STDERR "\t-h\t\tPrint help.\n";
 	print STDERR "\t-i id\t\tRecord identifier (default value is 001).\n";
 	print STDERR "\t-l\t\tList of plugins.\n";

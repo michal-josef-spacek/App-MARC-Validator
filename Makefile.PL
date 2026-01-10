@@ -26,6 +26,7 @@ requires 'Getopt::Std' => 0;
 requires 'IO::Barf' => 0;
 requires 'MARC::File::XML' => '1.0.4';
 requires 'MARC::Validator' => 0.06;
+requires 'MARC::Validator::Filter' => 0;
 requires 'Unicode::UTF8' => 0;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/App-MARC-Validator/issues',
 resources 'homepage' => 'https://github.com/michal-josef-spacek/App-MARC-Validator';

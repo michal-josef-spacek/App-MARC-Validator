@@ -72,8 +72,9 @@ sub help {
 		$script =~ s/\\/\//msg;
 	}
 	my $help = <<"END";
-Usage: $script [-d] [-h] [-i id] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file..
+Usage: $script [-d] [-f] [-h] [-i id] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file..
 	-d		Debug mode.
+	-f		List of filter plugins.
 	-h		Print help.
 	-i id		Record identifier (default value is 001).
 	-l		List of plugins.

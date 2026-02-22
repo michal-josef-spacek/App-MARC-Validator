@@ -3,8 +3,10 @@ package App::MARC::Validator;
 use strict;
 use warnings;
 
+use App::MARC::Validator::Utils qw(obj_to_json);
 use Class::Utils qw(set_params);
-use Cpanel::JSON::XS;
+use Data::MARC::Validator::Report;
+use DateTime;
 use English;
 use Getopt::Std;
 use IO::Barf qw(barf);
@@ -91,7 +93,7 @@ sub _init_plugins {
 	foreach my $plugin (MARC::Validator::plugins) {
 		my $plugin_obj = $plugin->new(
 			'debug' => $self->{'_opts'}->{'d'},
-			'error_id_def' => $self->{'_opts'}->{'i'},
+			'record_id_def' => $self->{'_opts'}->{'i'},
 			'verbose' => $self->{'_opts'}->{'v'},
 		);
 		$plugin_obj->init;
@@ -154,17 +156,16 @@ sub _process_validation {
 	}
 	$self->_postprocess_plugins;
 
-	my $output_struct_hr = {};
+	my @plugin_reports;
 	foreach my $plugin_obj (@{$self->{'_plugins'}}) {
-		$output_struct_hr->{$plugin_obj->name} = $plugin_obj->struct;
+		push @plugin_reports, $plugin_obj->struct;
 	}
+	my $report = Data::MARC::Validator::Report->new(
+		'datetime' => DateTime->now,
+		'plugins' => \@plugin_reports,
+	);
 
-	# JSON output.
-	my $j = Cpanel::JSON::XS->new;
-	if ($self->{'_opts'}->{'p'}) {
-		$j = $j->pretty;
-	}
-	my $json = $j->canonical(1)->encode($output_struct_hr);
+	my $json = obj_to_json($self, $report);
 
 	# Save to file.
 	if (defined $self->{'_opts'}->{'o'}) {

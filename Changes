@@ -1,6 +1,7 @@
 0.05
  - Add -f option to list of filter plugins.
  - Add ACKNOWLEDGEMENTS section to doc.
+ - Rewrite to new MARC::Validator@0.10 with new data model.
  - Update copyright years.
 
 0.04 2025-10-31T15:11:53+01:00

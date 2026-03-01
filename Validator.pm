@@ -44,9 +44,10 @@ sub run {
 		'l' => 0,
 		'o' => undef,
 		'p' => 0,
+		'r' => 0,
 		'v' => 0,
 	};
-	if (! getopts('dfhi:lo:pv', $self->{'_opts'})
+	if (! getopts('dfhi:lo:prv', $self->{'_opts'})
 		|| $self->{'_opts'}->{'h'}) {
 
 		$self->_usage;
@@ -94,6 +95,7 @@ sub _init_plugins {
 		my $plugin_obj = $plugin->new(
 			'debug' => $self->{'_opts'}->{'d'},
 			'record_id_def' => $self->{'_opts'}->{'i'},
+			'recommendation' => $self->{'_opts'}->{'r'},
 			'verbose' => $self->{'_opts'}->{'v'},
 		);
 		$plugin_obj->init;
@@ -192,7 +194,7 @@ sub _postprocess_plugins {
 sub _usage {
 	my $self = shift;
 
-	print STDERR "Usage: $0 [-d] [-f] [-h] [-i id] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file..\n";
+	print STDERR "Usage: $0 [-d] [-f] [-h] [-i id] [-l] [-o output_file] [-p] [-r] [-v] [--version] marc_xml_file..\n";
 	print STDERR "\t-d\t\tDebug mode.\n";
 	print STDERR "\t-f\t\tList of filter plugins.\n";
 	print STDERR "\t-h\t\tPrint help.\n";
@@ -200,6 +202,7 @@ sub _usage {
 	print STDERR "\t-l\t\tList of plugins.\n";
 	print STDERR "\t-o output_file\tOutput file (default is STDOUT).\n";
 	print STDERR "\t-p\t\tPretty print JSON output.\n";
+	print STDERR "\t-r\t\tRecommendations.\n";
 	print STDERR "\t-v\t\tVerbose mode.\n";
 	print STDERR "\t--version\tPrint version.\n";
 	print STDERR "\tmarc_xml_file..\tMARC XML file(s).\n";

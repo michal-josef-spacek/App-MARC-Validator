@@ -1,4 +1,5 @@
 0.06
+ - Add -r option for recommendations.
 
 0.05 2026-02-22T17:09:41+01:00
  - Add -f option to list of filter plugins.

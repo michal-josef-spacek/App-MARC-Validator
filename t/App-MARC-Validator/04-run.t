@@ -72,7 +72,7 @@ sub help {
 		$script =~ s/\\/\//msg;
 	}
 	my $help = <<"END";
-Usage: $script [-d] [-f] [-h] [-i id] [-l] [-o output_file] [-p] [-v] [--version] marc_xml_file..
+Usage: $script [-d] [-f] [-h] [-i id] [-l] [-o output_file] [-p] [-r] [-v] [--version] marc_xml_file..
 	-d		Debug mode.
 	-f		List of filter plugins.
 	-h		Print help.
@@ -80,6 +80,7 @@ Usage: $script [-d] [-f] [-h] [-i id] [-l] [-o output_file] [-p] [-v] [--version
 	-l		List of plugins.
 	-o output_file	Output file (default is STDOUT).
 	-p		Pretty print JSON output.
+	-r		Recommendations.
 	-v		Verbose mode.
 	--version	Print version.
 	marc_xml_file..	MARC XML file(s).

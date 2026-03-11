@@ -12,7 +12,7 @@ use Getopt::Std;
 use IO::Barf qw(barf);
 use List::Util 1.33 qw(none);
 use MARC::File::XML (BinaryEncoding => 'utf8', RecordFormat => 'MARC21');
-use MARC::Validator 0.06;
+use MARC::Validator 0.14;
 use MARC::Validator::Filter;
 use Unicode::UTF8 qw(encode_utf8);
 
@@ -168,7 +168,7 @@ sub _process_validation {
 
 	my @plugin_reports;
 	foreach my $plugin_obj (@{$self->{'_plugins'}}) {
-		push @plugin_reports, $plugin_obj->struct;
+		push @plugin_reports, $plugin_obj->report;
 	}
 	my $report = Data::MARC::Validator::Report->new(
 		'datetime' => DateTime->now,

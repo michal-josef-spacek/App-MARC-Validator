@@ -1,5 +1,6 @@
 0.07
  - Add -u option for plugin filtering.
+ - Update to new version of MARC::Validator@0.14.
 
 0.06 2026-03-01T19:06:29+01:00
  - Add -r option for recommendations.

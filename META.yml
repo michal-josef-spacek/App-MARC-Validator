@@ -35,6 +35,7 @@ requires:
   English: 0
   Getopt::Std: 0
   IO::Barf: 0
+  List::Util: 1.33
   MARC::File::XML: 1.0.4
   MARC::Validator: 0.11
   MARC::Validator::Filter: 0

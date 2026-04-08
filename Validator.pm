@@ -18,7 +18,7 @@ use MARC::Validator 0.14;
 use MARC::Validator::Filter;
 use Unicode::UTF8 qw(encode_utf8);
 
-our $VERSION = 0.08;
+our $VERSION = 0.09;
 
 # Constructor.
 sub new {
